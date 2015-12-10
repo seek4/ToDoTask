@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/popup_bkg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text_finished"
+        style="@style/PopupText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:text="@string/text_mark_finish"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/popup_devider" />
+
+    <TextView
+        android:id="@+id/text_giveup"
+        style="@style/PopupText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/text_mark_giveup"
+        android:clickable="true"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/popup_devider" />
+
+    <TextView
+        android:id="@+id/text_edit"
+        style="@style/PopupText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/text_edit"
+        android:clickable="true"
+        android:gravity="center" />
+
+</LinearLayout>

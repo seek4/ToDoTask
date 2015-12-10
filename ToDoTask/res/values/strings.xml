@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ToDoTask</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="text_notask">Noting To Do</string>
+    <string name="hint_title">Type In Title</string>
+    <string name="hint_desp">Type In Description</string>
+    <string-array 
+        name="spinner_level">
+        <item >Must</item>
+        <item >Should</item>
+        <item >Can</item>
+    </string-array>
+    <string name="text_starttime_title">StartTime:</string>
+    <string name="hint_starttime">Now</string>
+    <string name="text_endtime_title">EndTime:</string>
+    <string name="hint_endtime">BeforeTomorrow</string>
+    <string name="btn_save">Save</string>
+    <string name="text_mark_finish">标记为已完成</string>
+    <string name="text_mark_giveup">放弃该目标</string>
+    <string name="text_edit">修改该目标</string>
+</resources>
