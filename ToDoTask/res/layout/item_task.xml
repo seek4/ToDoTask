@@ -32,21 +32,20 @@
             android:gravity="center" />
     </LinearLayout>
 
+    <me.yangtong.view.LineProgressView
+        android:id="@+id/view_progress"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@+id/layout_head" />
+
     <TextView
         android:id="@+id/text_endtime"
         style="@style/TaskItemTextDeadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/layout_head"
+        android:layout_below="@id/view_progress"
         android:gravity="right"
         android:text="2015-11-18" />
-    
-    <me.yangtong.view.LineProgressView 
-        android:id="@+id/view_progress"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-		android:layout_below="@id/text_endtime"
-        />
 
 </RelativeLayout>

@@ -1255,12 +1255,13 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f090057;
+        public static final int action_settings=0x7f09005a;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
         public static final int btn_add=0x7f09004b;
         public static final int btn_endtime=0x7f090040;
+        public static final int btn_ok=0x7f090054;
         public static final int btn_save=0x7f090041;
         public static final int btn_starttime=0x7f09003f;
         public static final int checkbox=0x7f09002d;
@@ -1292,6 +1293,8 @@ containing a value of this type.
         public static final int none=0x7f090019;
         public static final int normal=0x7f090007;
         public static final int pager=0x7f090043;
+        public static final int picker_date=0x7f090052;
+        public static final int picker_time=0x7f090053;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
         public static final int radio=0x7f09002f;
@@ -1314,14 +1317,14 @@ containing a value of this type.
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
         public static final int tabs=0x7f090042;
-        public static final int text_edit=0x7f090054;
+        public static final int text_edit=0x7f090057;
         public static final int text_endtime=0x7f090048;
-        public static final int text_finished=0x7f090052;
-        public static final int text_giveup=0x7f090053;
-        public static final int text_group_name=0x7f090055;
+        public static final int text_finished=0x7f090055;
+        public static final int text_giveup=0x7f090056;
+        public static final int text_group_name=0x7f090058;
         public static final int text_level=0x7f090051;
         public static final int text_notask=0x7f09004a;
-        public static final int text_num=0x7f090056;
+        public static final int text_num=0x7f090059;
         public static final int text_starttime=0x7f090047;
         public static final int text_title=0x7f090050;
         public static final int title=0x7f09002b;
@@ -1389,10 +1392,11 @@ containing a value of this type.
         public static final int fragment_home=0x7f03001b;
         public static final int fragment_recent=0x7f03001c;
         public static final int item_task=0x7f03001d;
-        public static final int popup_longclick=0x7f03001e;
-        public static final int recent_list_group=0x7f03001f;
-        public static final int recent_list_group_item=0x7f030020;
-        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int layout_date_time_pick=0x7f03001e;
+        public static final int popup_longclick=0x7f03001f;
+        public static final int recent_list_group=0x7f030020;
+        public static final int recent_list_group_item=0x7f030021;
+        public static final int support_simple_spinner_dropdown_item=0x7f030022;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

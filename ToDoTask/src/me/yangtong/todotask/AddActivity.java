@@ -8,6 +8,8 @@ import me.yangtong.Utils;
 import me.yangtong.L;
 import me.yangtong.todotask.data.Task;
 import me.yangtong.todotask.data.TaskOperate;
+import me.yangtong.view.DateTimePickDialog;
+import me.yangtong.view.DateTimePickDialog.OnTimeSelectedListener;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -56,35 +58,46 @@ public class AddActivity extends Activity {
 		btnSave.setOnClickListener(btnClickListener);
 	}
 
+	private long startTime = System.currentTimeMillis();
+	private long endTime = System.currentTimeMillis()+24*60*60*1000;
+	
 	OnClickListener btnClickListener = new OnClickListener(){
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.btn_starttime:
-				String[] tmpStrings = (""+btnStartTime.getText()).split("-");
-				DatePickerDialog startDatePickerDialog = new DatePickerDialog(AddActivity.this, new OnDateSetListener() {
-					
-					@Override
-					public void onDateSet(DatePicker view, int year, int monthOfYear,
-							int dayOfMonth) {
-						btnStartTime.setText(Utils.getDisplayDate(year, monthOfYear, dayOfMonth));
-					}
-				}, Integer.parseInt(tmpStrings[0]), Integer.parseInt(tmpStrings[1])-1, Integer.parseInt(tmpStrings[2]));
-				startDatePickerDialog.show();
+				// 2015-12-22 11:12
+				String[] tmpStrings = (""+btnStartTime.getText()).split(" ");
+				String[] tmpDateStrigns = tmpStrings[0].split("-");
+				String[] tmpTimeStrings = tmpStrings[1].split(":");
+				DateTimePickDialog dateTimePickDialog = new DateTimePickDialog(AddActivity.this, 
+						new OnTimeSelectedListener() {
+							
+							@Override
+							public void onTimeSelected(long selectedTime) {
+								startTime = selectedTime;
+								btnStartTime.setText(""+Utils.getDateByMilli(selectedTime));
+							}
+						}, Integer.parseInt(tmpDateStrigns[0]), Integer.parseInt(tmpDateStrigns[1])-1, Integer.parseInt(tmpDateStrigns[2]),
+						Integer.parseInt(tmpTimeStrings[0]), Integer.parseInt(tmpTimeStrings[1]));
+				dateTimePickDialog.show();
 				break;
 			case R.id.btn_endtime:
-				String[] tmpStrings2 = (""+btnEndTime.getText()).split("-");
-				DatePickerDialog endDatePickerDialog = new DatePickerDialog(AddActivity.this, new OnDateSetListener() {
-					
-					@Override
-					public void onDateSet(DatePicker view, int year, int monthOfYear,
-							int dayOfMonth) {
-						// TODO Auto-generated method stub
-						btnEndTime.setText(Utils.getDisplayDate(year, monthOfYear, dayOfMonth));
-					}
-				}, Integer.parseInt(tmpStrings2[0]),Integer.parseInt(tmpStrings2[1])-1, Integer.parseInt(tmpStrings2[2]));
-				endDatePickerDialog.show();
+				String[] tmpStrings2 = (""+btnEndTime.getText()).split(" ");
+				String[] tmpDateStrigns2 = tmpStrings2[0].split("-");
+				String[] tmpTimeStrings2 = tmpStrings2[1].split(":");
+				DateTimePickDialog dateTimePickDialog2 = new DateTimePickDialog(AddActivity.this, 
+						new OnTimeSelectedListener() {
+							
+							@Override
+							public void onTimeSelected(long selectedTime) {
+								endTime = selectedTime;
+								btnEndTime.setText(""+Utils.getDateByMilli(selectedTime));
+							}
+						}, Integer.parseInt(tmpDateStrigns2[0]), Integer.parseInt(tmpDateStrigns2[1])-1, Integer.parseInt(tmpDateStrigns2[2]),
+						Integer.parseInt(tmpTimeStrings2[0]), Integer.parseInt(tmpTimeStrings2[1]));
+				dateTimePickDialog2.show();
 				break;
 			case R.id.btn_save:
 				saveCurTask();
@@ -103,8 +116,8 @@ public class AddActivity extends Activity {
 		task.setDescription(""+editDesp.getText());
 		int level = spinnerLevel.getSelectedItemPosition();
 		task.setLevel(level+1);
-		task.setStartTime(Utils.getMilloByDisplayDate(""+btnStartTime.getText()));
-		task.setEndTime(Utils.getMilloByDisplayDate(""+btnEndTime.getText()));
+		task.setStartTime(startTime);
+		task.setEndTime(endTime);
 		task.setStatus(Task.STATUS_TODO);
 		taskOperate.insertTask(task);
 	}

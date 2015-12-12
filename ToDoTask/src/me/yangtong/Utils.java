@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
+
+import android.R.string;
 
 public class Utils {
 
@@ -22,7 +25,7 @@ public class Utils {
 	}
 	
 	public static String getDateByMilli(long milliseconds){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm",Locale.CHINA);
 		Date date = new Date(milliseconds);
 		return format.format(date);
 	}
@@ -31,6 +34,7 @@ public class Utils {
 	public static long getMilloByDisplayDate(String displayDate){
 		String[] strings = displayDate.split("-");
 		Calendar c = Calendar.getInstance();
+		c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
 		c.set(Integer.parseInt(strings[0]), Integer.parseInt(strings[1])-1, Integer.parseInt(strings[2]));
 		return c.getTimeInMillis();
 	}
@@ -40,6 +44,13 @@ public class Utils {
 	 */
 	public static String getTodayDate(){
 		return getDateByMilli(System.currentTimeMillis());
+	}
+	
+	public static String getNowTime(){
+		Calendar c = Calendar.getInstance();
+		c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+		c.setTimeInMillis(System.currentTimeMillis());
+		return c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE);
 	}
 	
 	/**

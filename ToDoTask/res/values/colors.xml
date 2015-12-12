@@ -8,12 +8,12 @@
     <color name="popup_text">#A9A9A9</color><!-- 深灰色 -->
     <color name="popup_devider">#DCDCDC</color><!-- 淡灰色 -->
     <color name="quantouming">#00000000</color>
-    <color name="task_item_bkg_1">#ff4181</color>
-    <color name="task_item_bkg_2">#aa47bc</color>
-    <color name="task_item_bkg_3">#00bcd5</color>
-    <color name="task_item_bkg_4">#fecd40</color>
-    <color name="task_item_bkg_5">#ff5353</color>
-    <color name="task_item_bkg_6">#45289f</color>
-    <color name="task_item_bkg_7">#ffab91</color>
+    <color name="task_item_bkg_1">#e0ff4181</color>
+    <color name="task_item_bkg_2">#e0aa47bc</color>
+    <color name="task_item_bkg_3">#e000bcd5</color>
+    <color name="task_item_bkg_4">#e0fecd40</color>
+    <color name="task_item_bkg_5">#e0ff5353</color>
+    <color name="task_item_bkg_6">#e045289f</color>
+    <color name="task_item_bkg_7">#e0ffab91</color>
     <color name="recent_show_button">#FFFFFF</color>
 </resources>
