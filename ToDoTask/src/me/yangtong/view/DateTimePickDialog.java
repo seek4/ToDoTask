@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import me.yangtong.todotask.R;
-import android.R.integer;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -53,7 +52,6 @@ public class DateTimePickDialog extends Dialog {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_date_time_pick);
 		datePicker = (DatePicker)this.findViewById(R.id.picker_date);

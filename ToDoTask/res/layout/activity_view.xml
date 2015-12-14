@@ -1,43 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    <TextView 
-        android:id="@+id/view_text_title"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-    
-    <TextView 
-        android:id="@+id/view_text_content"
-        android:layout_below="@id/view_text_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="9" >
 
-    <me.yangtong.view.LineProgressView 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/title_bkg" >
+
+        <ImageButton
+            android:id="@+id/btn_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back" />
+        
+        <TextView 
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title"
+            android:textColor="@color/title_text_bkg"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/view_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:gravity="bottom"
+        android:textStyle="italic" />
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/popup_text"
+        />
+    
+    <TextView
+        android:id="@+id/view_text_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:paddingTop="5dp"
+        android:background="@color/view_dscp_bkg"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/layout_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/text_starttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/text_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <me.yangtong.view.LineProgressView
         android:id="@+id/view_progress"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_alignParentBottom="true"
-        />
-    
-    <TextView 
-        android:id="@+id/text_starttime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/view_progress"
-        android:layout_alignParentLeft="true"
-        />
-    
-    <TextView 
-        android:id="@+id/text_endtime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/view_progress"
-        android:layout_alignParentRight="true"
-        />
-</RelativeLayout>
+        android:layout_gravity="bottom"
+        android:layout_weight="1" />
+
+</LinearLayout>

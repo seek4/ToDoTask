@@ -16,4 +16,7 @@
     <color name="task_item_bkg_6">#e045289f</color>
     <color name="task_item_bkg_7">#e0ffab91</color>
     <color name="recent_show_button">#FFFFFF</color>
+    <color name="view_dscp_bkg">#efdf74</color>
+    <color name="title_bkg">#101016</color><!-- 偏黑色 -->
+    <color name="title_text_bkg">#FFFFFF</color>
 </resources>

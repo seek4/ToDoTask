@@ -1,25 +1,16 @@
 package me.yangtong.todotask;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import me.yangtong.Utils;
-import me.yangtong.L;
 import me.yangtong.todotask.data.Task;
 import me.yangtong.todotask.data.TaskOperate;
 import me.yangtong.view.DateTimePickDialog;
 import me.yangtong.view.DateTimePickDialog.OnTimeSelectedListener;
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -27,6 +18,8 @@ public class AddActivity extends Activity {
 	
 	private TaskOperate taskOperate;
 
+	
+	private Button btnBack;
 	private EditText editTitle;
 	private Spinner spinnerLevel;
 	private EditText editDesp;
@@ -36,7 +29,6 @@ public class AddActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_add);
@@ -45,6 +37,8 @@ public class AddActivity extends Activity {
 	}
 	
 	private void initView(){
+		btnBack = (Button)this.findViewById(R.id.btn_title_back);
+		btnBack.setOnClickListener(btnClickListener);
 		editTitle = (EditText)this.findViewById(R.id.edit_title);
 		spinnerLevel = (Spinner)this.findViewById(R.id.spinner_level);
 		editDesp = (EditText)this.findViewById(R.id.edit_desp);
@@ -103,7 +97,9 @@ public class AddActivity extends Activity {
 				saveCurTask();
 				finish();
 				break;
-
+			case R.id.btn_title_back:
+				finish();
+				break;
 			default:
 				break;
 			}		
