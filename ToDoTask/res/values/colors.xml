@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="background_tab_pressed">#6633B5E5</color>
-    <color name="task_item_bkg">#20000000</color><!-- 半透明 -->
+    <color name="task_item_bkg">#20000000</color> <!-- 半透明 -->
     <color name="task_item_text_deadline">#FFFFFF</color>
     <color name="task_item_text_title">#FFFFFF</color>
     <color name="popup_bkg">#FFFFFF</color>
-    <color name="popup_text">#A9A9A9</color><!-- 深灰色 -->
-    <color name="popup_devider">#DCDCDC</color><!-- 淡灰色 -->
+    <color name="popup_text">#A9A9A9</color> <!-- 深灰色 -->
+    <color name="popup_devider">#DCDCDC</color> <!-- 淡灰色 -->
     <color name="quantouming">#00000000</color>
     <color name="task_item_bkg_1">#e0ff4181</color>
     <color name="task_item_bkg_2">#e0aa47bc</color>
@@ -15,8 +16,19 @@
     <color name="task_item_bkg_5">#e0ff5353</color>
     <color name="task_item_bkg_6">#e045289f</color>
     <color name="task_item_bkg_7">#e0ffab91</color>
+    <color name="task_item_bkg_must_start">#d9275e</color>
+    <color name="task_item_bkg_must_end">#8a163a</color>
+    <color name="task_item_bkg_must_center">#d9275e</color>
+    <color name="task_item_bkg_should_start">#66450c</color>
+    <color name="task_item_bkg_should_end">#66450c</color>
+    <color name="task_item_bkg_should_center">#66450c</color>
+    <color name="task_item_bkg_can_start">#1f6a50</color>
+    <color name="task_item_bkg_can_end">#0b2b20</color>
+    <color name="task_item_bkg_can_center">#154b39</color>
     <color name="recent_show_button">#FFFFFF</color>
     <color name="view_dscp_bkg">#efdf74</color>
-    <color name="title_bkg">#101016</color><!-- 偏黑色 -->
+    <color name="title_bkg">#101016</color> <!-- 偏黑色 -->
     <color name="title_text_bkg">#FFFFFF</color>
+    <color name="text_btn_add">#38423f</color>
+
 </resources>

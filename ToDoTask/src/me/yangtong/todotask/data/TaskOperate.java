@@ -85,6 +85,7 @@ public class TaskOperate {
 		contentValues.put(DatabaseHelper.CLOED_TIME, task.closedTime);
 		db.update(DatabaseHelper.TB_NAME, contentValues, "id = ?",
 				new String[] { "" + task.id });
+		Log.i("yangtong", "taskId >>"+task.id);
 	}
 
 	public void insertTask(Task task) {
@@ -139,7 +140,7 @@ public class TaskOperate {
 			+ "<? and " + DatabaseHelper.END_TIME + ">? and status=?";
 
 	/**
-	 * get today's todo task order by endtime
+	 * get today's todo task order by level
 	 * 
 	 * @return
 	 */
@@ -148,7 +149,7 @@ public class TaskOperate {
 		List<Task> todayTasks = new ArrayList<Task>();
 		Cursor cursor = db.query(DatabaseHelper.TB_NAME, null,
 				SELECT_TODAY_TODO_TASKS, new String[] { currMilli, currMilli,
-						"" + Task.STATUS_TODO }, null, null, "endtime ASC");
+						"" + Task.STATUS_TODO }, null, null, "level ASC");
 		if (cursor == null || cursor.getCount() <= 0) {
 			return todayTasks;
 		}

@@ -19,8 +19,10 @@ public class ViewActivity extends Activity {
 	
 	TaskOperate taskOperate;
 	private Task task;
+	private int id;
 	
 	private ImageButton btnTitleBack;
+	private ImageButton btnTitleEdit;
 	private TextView textTitle;
 	private TextView textContent;
 	private TextView textStartTime;
@@ -34,39 +36,61 @@ public class ViewActivity extends Activity {
 		setContentView(R.layout.activity_view);
 		initData();
 		initView();
-		
 	}
 	
+	
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(id!=-1){
+			task = taskOperate.getTaskById(id);
+		}
+		if(task==null){
+			Toast.makeText(ViewActivity.this, "出错了。。。", Toast.LENGTH_SHORT).show();
+			finish();
+		}
+		freshView();
+	}
+
+	
+	private void freshView(){
+		textTitle.setText(task.title);
+		textContent.setText(task.description);
+		textStartTime.setText(Utils.getDateByMilli(task.startTime));
+		textEndTime.setText(Utils.getDateByMilli(task.endTime));
+		viewProgress.setProgress(task.getProgress());
+	}
+
+
 	private void initView(){
+		btnTitleEdit = (ImageButton)this.findViewById(R.id.btn_title_edit);
+		btnTitleEdit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ViewActivity.this, EditActivity.class);
+				intent.putExtra("id", id);
+				startActivity(intent);
+			}
+		});
 		btnTitleBack = (ImageButton)this.findViewById(R.id.btn_title_back);
-		btnTitleBack.setOnClickListener(new OnClickListener() {
-			
+		btnTitleBack.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View v) {
 				finish();	
 			}
 		});
 		textTitle = (TextView)this.findViewById(R.id.view_text_title);
-		textTitle.setText(task.title);
 		textContent = (TextView)this.findViewById(R.id.view_text_content);
-		textContent.setText(task.description);
 		textStartTime = (TextView)this.findViewById(R.id.text_starttime);
-		textStartTime.setText(Utils.getDateByMilli(task.startTime));
 		textEndTime = (TextView)this.findViewById(R.id.text_endtime);
-		textEndTime.setText(Utils.getDateByMilli(task.endTime));
 		viewProgress = (LineProgressView)this.findViewById(R.id.view_progress);
-		viewProgress.setProgress(task.getProgress());
 	}
 	
 	private void initData(){
 		taskOperate = TaskOperate.getInstance(ViewActivity.this);
 		Intent intent = getIntent();
-		int id  =intent.getIntExtra("id", -1);
-		task = taskOperate.getTaskById(id);
-		if(task==null){
-			Toast.makeText(ViewActivity.this, "出错了。。。", Toast.LENGTH_SHORT).show();
-			finish();
-		}
+		id  =intent.getIntExtra("id", -1);
 	}
 	
 }

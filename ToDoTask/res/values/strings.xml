@@ -22,4 +22,9 @@
     <string name="text_mark_giveup">放弃该目标</string>
     <string name="text_edit">修改该目标</string>
     <string name="title">ToDoList</string>
+    <string name="btn_add">添加新事项</string>
+    
+    <string name="toast_no_title_desp">名称和描述不能同时为空！</string>
+    <string name="toast_endtime_exceed">结束时间不能早于当前时间！</string>
+    <string name="toast_endtime_before_start">结束时间不能比开始时间还早！</string>
 </resources>

@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
 
 	private View view;
 	private ListView listTask;
-	private ImageButton btnAdd;
+	private Button btnAdd;
 	private TextView textNoTask;
 
 	private List<Task> todayTasks;
@@ -51,7 +52,7 @@ public class HomeFragment extends Fragment {
 //		if (view == null || taskOperate == null) {
 			view = inflater.inflate(R.layout.fragment_home, container, false);
 			listTask = (ListView) view.findViewById(R.id.list_task);
-			btnAdd = (ImageButton) view.findViewById(R.id.btn_add);
+			btnAdd = (Button) view.findViewById(R.id.btn_add);
 			textNoTask = (TextView) view.findViewById(R.id.text_notask);
 			taskOperate = TaskOperate.getInstance(mContext);
 			todayTasks = taskOperate.getTodayTodoTask();
@@ -204,47 +205,38 @@ public class HomeFragment extends Fragment {
 						.findViewById(R.id.layout_item);
 				viewHolder.textTitle = (TextView) convertView
 						.findViewById(R.id.text_title);
-				viewHolder.textLevel = (TextView) convertView
-						.findViewById(R.id.text_level);
+//				viewHolder.textLevel = (TextView) convertView
+//						.findViewById(R.id.text_level);
+				viewHolder.textStartTime = (TextView)convertView
+						.findViewById(R.id.text_startTime);
 				viewHolder.textEndTime = (TextView) convertView
 						.findViewById(R.id.text_endtime);
 				viewHolder.viewProgress = (LineProgressView)convertView
-						.findViewById(R.id.view_progress);				
+						.findViewById(R.id.view_progress);	
+				convertView.setTag(viewHolder);
 			} else {
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 			viewHolder.textTitle.setText(task.getTitle());
-			viewHolder.textLevel.setText("" + task.getLevel());
+//			viewHolder.textLevel.setText("" + task.getLevel());
+			viewHolder.textStartTime.setText(Utils.getDateByMilli(task.startTime));
 			viewHolder.textEndTime.setText(Utils.getDateByMilli(task
 					.getEndTime()));
 			viewHolder.viewProgress.setProgress(task.getProgress());
-			setLayoutBkg(viewHolder.layoutItem, position);	
-			convertView.setTag(viewHolder);
+			setLayoutBkg(viewHolder.layoutItem, task.getLevel());				
 			return convertView;
 		}
 
-		public void setLayoutBkg(RelativeLayout layout,int position){
-			switch (position%7) {
-			case 0:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_1));		
-				break;
+		public void setLayoutBkg(RelativeLayout layout,int level){
+			switch (level) {
 			case 1:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_2));
+				layout.setBackgroundResource(R.drawable.bkg_task_item_1);		
 				break;
 			case 2:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_3));
+				layout.setBackgroundResource(R.drawable.bkg_task_item_2);		
 				break;
 			case 3:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_4));
-				break;
-			case 4:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_5));
-				break;
-			case 5:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_6));
-				break;
-			case 6:
-				layout.setBackgroundColor(getResources().getColor(R.color.task_item_bkg_7));
+				layout.setBackgroundResource(R.drawable.bkg_task_item_3);		
 				break;
 			default:
 				break;
@@ -255,7 +247,8 @@ public class HomeFragment extends Fragment {
 		private class ViewHolder {
 			public RelativeLayout layoutItem;
 			public TextView textTitle;
-			public TextView textLevel;
+//			public TextView textLevel;
+			public TextView textStartTime;
 			public TextView textEndTime;
 			public LineProgressView viewProgress;
 		}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <gradient
+        android:angle="270"
+        android:centerColor="@color/task_item_bkg_must_center"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:endColor="@color/task_item_bkg_must_start"
+        android:startColor="@color/task_item_bkg_must_end" />
+
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+
+    <corners android:radius="2dp" />
+
+</shape> 
