@@ -71,7 +71,6 @@ public class HomeFragment extends Fragment {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Skip into add activity
 					Intent intent = new Intent(mContext, AddActivity.class);
 					startActivity(intent);
 				}
@@ -119,6 +118,9 @@ public class HomeFragment extends Fragment {
 								break;
 							case R.id.text_edit:
 								L.i("text_edit clicked");
+								Intent intent = new Intent(mContext, ViewActivity.class);
+								intent.putExtra("id", taskAdapter.getItemId(position));
+								mContext.startActivity(intent);
 								break;
 							default:
 								break;

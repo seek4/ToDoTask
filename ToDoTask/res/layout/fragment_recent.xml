@@ -13,11 +13,31 @@
         android:orientation="vertical" >
     </LinearLayout>
 
+    <Button 
+        android:id="@+id/btn_switch"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:visibility="invisible"
+        android:text="列表"
+        />
+    
     <ExpandableListView
         android:id="@+id/list_recent_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:cacheColorHint="@color/quantouming" >
     </ExpandableListView>
 
+    <ListView 
+        android:id="@+id/list_timeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+        
+    </ListView>
+    
+    
 </LinearLayout>

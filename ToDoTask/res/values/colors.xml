@@ -30,5 +30,6 @@
     <color name="title_bkg">#101016</color> <!-- 偏黑色 -->
     <color name="title_text_bkg">#FFFFFF</color>
     <color name="text_btn_add">#38423f</color>
-
+	<color name="bkg_timeline_view">#A9A9A9</color>
+	
 </resources>

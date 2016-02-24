@@ -35,6 +35,7 @@
         android:textSize="20sp"
         android:textColor="@color/text_btn_add"
         android:text="@string/btn_add"
+        android:background="@drawable/btn_holo_light"
         />
 
 </LinearLayout>

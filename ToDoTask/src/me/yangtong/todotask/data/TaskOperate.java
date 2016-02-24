@@ -280,6 +280,42 @@ public class TaskOperate {
 	}
 	
 	
+	
+	private static final String SELECT_TO_NOTIFY = DatabaseHelper.START_TIME +"<? and "+
+				DatabaseHelper.END_TIME+">? and status=? and "+DatabaseHelper.LEVEL + "=?";
+	/**
+	 * get the tasks that should send notification
+	 * @return
+	 */
+	public List<Task> getToNotifyTask(){
+		List<Task> tasks = new ArrayList<Task>();
+		String currMilli = "" + System.currentTimeMillis();
+		Cursor cursor = db.query(DatabaseHelper.TB_NAME, null,
+				SELECT_TO_NOTIFY, new String[] { currMilli, currMilli,
+						"" + Task.STATUS_TODO,""+Task.LEVEL_MUST }, null, null, "endTime DESC");
+		if (cursor == null || cursor.getCount() <= 0) {
+			return tasks;
+		}
+		Task task;
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			task = new Task();
+			task.id = cursor.getInt(0);
+			task.level = cursor.getInt(1);
+			task.title = cursor.getString(2);
+			task.description = cursor.getString(3);
+			task.startTime = cursor.getLong(4);
+			task.endTime = cursor.getLong(5);
+			task.status = cursor.getInt(6);
+			task.closedTime = cursor.getLong(7);
+			tasks.add(task);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return tasks;
+	}
+	
+	
 	private static final String SELECT_END_STATUS = DatabaseHelper.END_TIME + "<? and status=?";
 	
 	

@@ -1,2 +1,2 @@
 # ToDoTask
-个人事件管理APP
+个人事项管理APP

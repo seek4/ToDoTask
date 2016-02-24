@@ -1,6 +1,7 @@
 package me.yangtong.todotask;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 import me.yangtong.L;
 import me.yangtong.todotask.data.Task;
@@ -12,10 +13,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +37,9 @@ public class RecentFragment extends Fragment {
 	private ExpandableListView listTask;
 	private AllTasksAdapter allTasksAdapter;
 
+	private Button btnSwitch;
+	private ListView listTimeLine;
+	
 	private List<Task> allTasks;
 	private List<Task> finishedTasks;
 	private List<Task> timeExceedTasks;
@@ -45,16 +52,22 @@ public class RecentFragment extends Fragment {
 			Bundle savedInstanceState) {
 		L.i("RecentFragment onCreateView");
 		view = inflater.inflate(R.layout.fragment_recent, container, false);
+		mContext = getActivity();
+		initData();
+		initView();	
+		return view;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		updateView();
+	}
+
+	private void initView(){
 		layoutSummary = (LinearLayout) view.findViewById(R.id.layout_summary);
 		listTask = (ExpandableListView) view
 				.findViewById(R.id.list_recent_tasks);
-		mContext = getActivity();
-		taskOperate = TaskOperate.getInstance(mContext);
-
-		finishedTasks = taskOperate.getLastWeekFinishedTask();
-		timeExceedTasks = taskOperate.getLastWeekTimeExceedTask();
-		giveUpTasks = taskOperate.getLastWeekGiveUpTask();
-
 		viewSummary = new SummaryArc(mContext, finishedTasks.size(),
 				timeExceedTasks.size(), giveUpTasks.size());
 		layoutSummary.addView(viewSummary);
@@ -71,15 +84,33 @@ public class RecentFragment extends Fragment {
 				return false;
 			}
 		});
-		return view;
+		btnSwitch = (Button)view.findViewById(R.id.btn_switch);
+		btnSwitch.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//TODO 没想要时间该怎么排布，是时间段，不是时间点，而且有重叠部分
+//				if(listTimeLine.getVisibility()==View.VISIBLE){
+//					listTimeLine.setVisibility(View.GONE);
+//					listTask.setVisibility(View.VISIBLE);
+//				}else {
+//					listTimeLine.setVisibility(View.VISIBLE);
+//					listTask.setVisibility(View.GONE);
+//				}
+			}
+		});
+		listTimeLine = (ListView)view.findViewById(R.id.list_timeline);
 	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		updateView();
+	
+	private void initData(){
+		
+		taskOperate = TaskOperate.getInstance(mContext);
+		finishedTasks = taskOperate.getLastWeekFinishedTask();
+		timeExceedTasks = taskOperate.getLastWeekTimeExceedTask();
+		giveUpTasks = taskOperate.getLastWeekGiveUpTask();
 	}
-
+	
+	
 	private void updateView() {
 		finishedTasks = taskOperate.getLastWeekFinishedTask();
 		timeExceedTasks = taskOperate.getLastWeekTimeExceedTask();
@@ -100,13 +131,11 @@ public class RecentFragment extends Fragment {
 
 		@Override
 		public int getGroupCount() {
-			// TODO Auto-generated method stub
 			return groups.length;
 		}
 
 		@Override
 		public int getChildrenCount(int groupPosition) {
-			// TODO Auto-generated method stub
 			switch (groupPosition) {
 			case 0:
 				return finishedTasks.size();
@@ -121,7 +150,6 @@ public class RecentFragment extends Fragment {
 
 		@Override
 		public Object getGroup(int groupPosition) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
@@ -141,13 +169,11 @@ public class RecentFragment extends Fragment {
 
 		@Override
 		public long getGroupId(int groupPosition) {
-			// TODO Auto-generated method stub
 			return groupPosition;
 		}
 
 		@Override
 		public long getChildId(int groupPosition, int childPosition) {
-			// TODO Auto-generated method stub
 			switch (groupPosition) {
 			case 0:
 				return finishedTasks.get(childPosition).getId();
@@ -162,7 +188,6 @@ public class RecentFragment extends Fragment {
 
 		@Override
 		public boolean hasStableIds() {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -205,10 +230,65 @@ public class RecentFragment extends Fragment {
 
 		@Override
 		public boolean isChildSelectable(int groupPosition, int childPosition) {
-			// TODO Auto-generated method stub
 			return true;
 		}
 
+	}
+	
+	
+	class TimeLineAdapter extends BaseAdapter{
+		LayoutInflater mInflater;
+		List<Task> mTasks;
+		
+		public TimeLineAdapter(Context context,List<Task> tasks){
+			mInflater = LayoutInflater.from(context);
+			mTasks = tasks;
+		}
+
+		
+		public void updateData(List<Task> tasks){
+			this.mTasks = tasks;
+		}
+		
+		@Override
+		public int getCount() {
+			return mTasks.size();
+		}
+
+		@Override
+		public Task getItem(int position) {
+			return mTasks.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return getItem(position).getId();
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder viewHolder = null;
+			if(convertView==null){
+				convertView = mInflater.inflate(R.layout.item_recent_timeline, null);
+				viewHolder = new ViewHolder();
+				viewHolder.textTitle = (TextView) convertView.findViewById(R.id.text_title);
+				viewHolder.textStatus = (TextView)convertView.findViewById(R.id.text_status);
+				convertView.setTag(viewHolder);
+			}else {
+				viewHolder = (ViewHolder) convertView.getTag();
+			}
+			Task task = getItem(position);
+			if(task!=null){
+				
+			}
+			return convertView;
+		}
+		
+		class ViewHolder{
+			public TextView textTitle;
+			public TextView textStatus;
+		}
+		
 	}
 
 }

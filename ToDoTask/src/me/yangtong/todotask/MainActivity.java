@@ -11,10 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 
 public class MainActivity extends ActionBarActivity {
@@ -62,8 +58,6 @@ public class MainActivity extends ActionBarActivity {
 		public int getCount() {
 			return titles.length;
 		}
-
-		
 
 		@Override
 		public Fragment getItem(int position) {
