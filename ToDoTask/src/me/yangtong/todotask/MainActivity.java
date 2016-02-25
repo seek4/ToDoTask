@@ -40,7 +40,6 @@ public class MainActivity extends ActionBarActivity {
 		pager.setCurrentItem(1);
 	}
 	
-	
 	public class MyPagerAdapter extends FragmentPagerAdapter {
 
 		public MyPagerAdapter(FragmentManager fm) {

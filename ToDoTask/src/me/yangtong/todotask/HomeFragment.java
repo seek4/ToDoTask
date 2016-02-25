@@ -118,8 +118,8 @@ public class HomeFragment extends Fragment {
 								break;
 							case R.id.text_edit:
 								L.i("text_edit clicked");
-								Intent intent = new Intent(mContext, ViewActivity.class);
-								intent.putExtra("id", taskAdapter.getItemId(position));
+								Intent intent = new Intent(mContext, EditActivity.class);
+								intent.putExtra("id", (int)taskAdapter.getItemId(position));
 								mContext.startActivity(intent);
 								break;
 							default:
@@ -148,7 +148,6 @@ public class HomeFragment extends Fragment {
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		updateContentView();
 	}
@@ -175,25 +174,21 @@ public class HomeFragment extends Fragment {
 		LayoutInflater mLayoutInflater;
 
 		public TaskAdapter(Context context) {
-			// TODO Auto-generated constructor stub
 			mLayoutInflater = LayoutInflater.from(context);
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return todayTasks.size();
 		}
 
 		@Override
 		public Task getItem(int position) {
-			// TODO Auto-generated method stub
 			return todayTasks.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return todayTasks.get(position).getId();
 		}
 

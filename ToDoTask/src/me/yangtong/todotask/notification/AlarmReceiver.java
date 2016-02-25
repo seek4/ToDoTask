@@ -20,7 +20,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		this.mContext = context;
 		sendNotificatio();
 		L.i("AlarmReceiver  onReceive");
-		Toast.makeText(context, "闹铃时间到了！！！！", Toast.LENGTH_LONG).show();
+		//Toast.makeText(context, "闹铃时间到了！！！！", Toast.LENGTH_LONG).show();
 	}
 	
 	

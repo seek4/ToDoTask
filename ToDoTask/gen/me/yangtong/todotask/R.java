@@ -1274,7 +1274,8 @@ containing a value of this type.
         public static final int ofm_group_chat_icon=0x7f02006f;
         public static final int ofm_qrcode_icon=0x7f020070;
         public static final int ofm_setting_icon=0x7f020071;
-        public static final int title_btn_back=0x7f020072;
+        public static final int title_back=0x7f020072;
+        public static final int title_btn_back=0x7f020073;
     }
     public static final class id {
         public static final int action_bar=0x7f09001c;
@@ -1530,7 +1531,6 @@ containing a value of this type.
          */
         public static final int AppBaseTheme=0x7f0b008b;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b008c;
         public static final int PopupText=0x7f0b008f;

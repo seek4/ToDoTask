@@ -60,6 +60,7 @@ public class RecentFragment extends Fragment {
 
 	@Override
 	public void onResume() {
+		L.i("RecentFragment  onResume");
 		super.onResume();
 		updateView();
 	}

@@ -312,7 +312,8 @@ int drawable ofm_feedback_icon 0x7f02006e
 int drawable ofm_group_chat_icon 0x7f02006f
 int drawable ofm_qrcode_icon 0x7f020070
 int drawable ofm_setting_icon 0x7f020071
-int drawable title_btn_back 0x7f020072
+int drawable title_back 0x7f020072
+int drawable title_btn_back 0x7f020073
 int id action_bar 0x7f09001c
 int id action_bar_activity_content 0x7f090001
 int id action_bar_container 0x7f09001b

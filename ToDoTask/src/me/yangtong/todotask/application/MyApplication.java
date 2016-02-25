@@ -37,13 +37,16 @@ public class MyApplication extends Application {
 		}
 		
 		// 将结束时间在今天内的Task添加到Alarm
-		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(System.currentTimeMillis()+10*1000);
-		
-		Intent intent = new Intent(MyApplication.this, AlarmReceiver.class);
-		PendingIntent pi = PendingIntent.getBroadcast(MyApplication.this, 0, intent, 0);
-		alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pi);
+		if(false){
+			//TODO 闹铃提示待完善
+			AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(System.currentTimeMillis()+10*1000);
+			
+			Intent intent = new Intent(MyApplication.this, AlarmReceiver.class);
+			PendingIntent pi = PendingIntent.getBroadcast(MyApplication.this, 0, intent, 0);
+			alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pi);
+		}
 		//alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), (1*1000), pi);
 	}
 	
